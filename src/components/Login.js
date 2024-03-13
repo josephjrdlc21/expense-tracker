@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+
+  const navigate = useNavigate();
   
   useEffect(() => {
     const insertUserData = async () => {
@@ -18,13 +21,14 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
+
     try{
       const storedUserData = await new Promise((res) => {
         const userData = localStorage.getItem('user');
         res(JSON.parse(userData));
       });
       if (storedUserData && email === storedUserData.name && password === storedUserData.password) {
-        window.location.href = '/tracker';
+        navigate('/tracker');
       }
       else {
         alert('Invalid login credentials');
