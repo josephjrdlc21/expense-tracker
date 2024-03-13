@@ -1,24 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar';
+import Tracker from './components/Tracker';
+import Login from './components/Login';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="overflow-hidden">
+        <Routes>
+          <Route
+            path="/tracker/*"
+            element={
+              <>
+                <header className="bg-white w-full h-auto md:h-[70px] p-2">
+                  <Navbar />
+                </header>
+                <main className="md:max-w-[1280px] p-2 mx-auto mt-5">
+                  <Tracker />
+                </main>
+              </>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <>
+                <Login />
+              </>
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
